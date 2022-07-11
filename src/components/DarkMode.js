@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Switch, { SwitchProps } from '@mui/material/Switch';
+import Switch  from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { ThemeToggler } from 'gatsby-plugin-dark-mode'
@@ -10,6 +10,9 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
   padding: 7,
+  position: 'absolute',
+  right: 0,
+  top: 0,
   '& .MuiSwitch-switchBase': {
     margin: 1,
     padding: 0,
@@ -59,7 +62,7 @@ class DarkMode extends React.Component {
     return (
       <ThemeToggler>
         {({ theme, toggleTheme }) => (
-          <FormGroup>
+          <FormGroup style={{maxWidth:'85px'}}>
             <FormControlLabel
               control={<MaterialUISwitch sx={{ m: 1 }} />}
               onChange={e => toggleTheme(e.target.checked ? 'dark' : 'light')}
