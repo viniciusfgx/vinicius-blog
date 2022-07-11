@@ -43,13 +43,14 @@ const Bio = () => {
         alt="Profile picture"
       />
       {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `}
-          <a href={`https://linkedin.com/in/${social?.linkedin || ``}`} target={"_blank"}>
-            Follow me on linkedin
-          </a>
-        </p>
+          <h3  style={{
+            backgroundColor: 'var(--bg)',
+            color: 'var(--textNormal)',
+            transition: 'color 0.2s ease-out, background 0.2s ease-out',
+          }}>Add social media here</h3>
+          // <a href={`https://linkedin.com/in/${social?.linkedin || ``}`} target={"_blank"}>
+          //   Follow me on linkedin
+          // </a>
       )}
     </div>
   )
