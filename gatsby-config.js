@@ -2,19 +2,32 @@ module.exports = {
   siteMetadata: {
     title: `Vinicius Freire`,
     author: {
-      name: `Vinicius Freire`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `viniciusfgx`,
+      summary: `Full Stack Software Developer`,
+      selfIntroduction: `Hello world!`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://viniciusfgx.com/`,
+    description: `My personal blog to share all knowledge that I learned during my career.`,
+    siteUrl: `http://viniciusfgx.com/`,
     social: {
-      linkedin: `viniciusfgx`,
+      git: `https://github.com/viniciusfgx`,
+      instagram: `https://www.instagram.com/viniciusfg_`,
+      linkedin: `https://linkedin.com/in/viniciusfgx`,
+      mail: `contact@viniciusfgx.com`,
+    },
+    commentInfo: {
+      service: 'utterances', // select utterances or disqus
+      disqusId: 'our-blog-starter', // your disqus shortname, check detail: disqus.com
+      utterancesId: 'react-sprint/gatsby-blog-starter-with-typescript', // your gatsby repository, check detail: utteranc.es
     },
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        additionalData: `@import "./src/styles/variables.scss"; @import "./src/styles/mixins.scss";`,
+      },
+    },
     `gatsby-plugin-image`,
-    `gatsby-plugin-dark-mode`,
-    `gatsby-plugin-material-ui`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -48,6 +61,7 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          'gatsby-remark-emoji',
         ],
       },
     },
@@ -76,17 +90,15 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
-                return Object.assign({}, node.frontmatter, {
-                  description: node.excerpt,
-                  date: node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
-            },
+            serialize: ({ query: { site, allMarkdownRemark } }) =>
+              allMarkdownRemark.nodes.map((node) => ({
+                ...node.frontmatter,
+                description: node.excerpt,
+                date: node.frontmatter.date,
+                url: site.siteMetadata.siteUrl + node.fields.slug,
+                guid: site.siteMetadata.siteUrl + node.fields.slug,
+                custom_elements: [{ 'content:encoded': node.html }],
+              })),
             query: `
               {
                 allMarkdownRemark(
@@ -106,8 +118,7 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
-            title: "Gatsby Starter Blog RSS Feed",
+            output: '/rss.xml',
           },
         ],
       },
@@ -119,16 +130,15 @@ module.exports = {
         short_name: `GatsbyJS`,
         start_url: `/`,
         background_color: `#ffffff`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
+        theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-gatsby-cloud`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
