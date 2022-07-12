@@ -9,19 +9,18 @@ import Category from '../components/common/Category';
 import Contacts from '../components/common/Contacts';
 import Card from '../components/common/Card';
 import titleIcon from '../images/title-icon.svg';
-
 import '../styles/pages/index.scss';
 
 const BlogIndex = ({ data, location }) => {
-  const categories: string[] = ['All', ...data.allMarkdownRemark.group.map((item) => item.fieldValue)];
+  const categories: string[] = ['All', ...data.allMarkdownRemark.group.map((item: { fieldValue: any; }) => item.fieldValue)];
   const [category, setCategory] = useState<string>((parse(globalHistory.location.search)?.category as string) || 'All');
-  const posts = data.allMarkdownRemark.nodes.filter((post) =>
+  const posts = data.allMarkdownRemark.nodes.filter((post: { frontmatter: { category: string; }; }) =>
     category === 'All' ? post : category === post.frontmatter.category,
   );
 
-  const getThumbnail = (postIndex) => {
+  const getThumbnail = (postIndex: any) => {
     const regex = /<img[^>]+src\s*=\s*['"]([^'"]+)['"][^>]*>/g;
-    const htmlString = posts.map((htmlCode, htmlIndex) => {
+    const htmlString = posts.map((htmlCode: { html: any; }, htmlIndex: any) => {
       if (postIndex === htmlIndex) {
         return htmlCode.html;
       }
@@ -62,8 +61,8 @@ const BlogIndex = ({ data, location }) => {
           <div className="index-content">
             <div className="max-width-1024 card-container">
               {posts
-                .filter((post) => (category === 'All' ? post : category === post.frontmatter.category))
-                .map((post, postIndex) => (
+                .filter((post: { frontmatter: { category: string; }; }) => (category === 'All' ? post : category === post.frontmatter.category))
+                .map((post: any, postIndex: any) => (
                   <Card key={post.fields.slug} post={post} thumbnail={getThumbnail(postIndex)} />
                 ))}
             </div>

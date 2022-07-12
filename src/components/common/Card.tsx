@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import cardTagIcon from '../../images/card-tag-icon.svg';
 import cardDateIcon from '../../images/card-date-icon.svg';
 import '../../styles/components/common/card.scss';
+import useAnalyticsEventTracker from "../useAnalyticsEventTracker";
 
 interface Field {
   slug: string;
@@ -27,6 +28,8 @@ interface Props {
 }
 
 export default function Card({ post, thumbnail }: Props) {
+  const gaEventTracker = useAnalyticsEventTracker('Index');
+
   const title = post.frontmatter.title || post.fields.slug;
   const { category, description } = post.frontmatter;
 
@@ -34,7 +37,7 @@ export default function Card({ post, thumbnail }: Props) {
   const themeStartNumber = 1;
 
   return (
-    <Link to={post.fields.slug}>
+    <Link to={post.fields.slug} onClick={()=>gaEventTracker(`${title}`)}>
       <div className="card">
         {thumbnail ? (
           <div className="card--image" dangerouslySetInnerHTML={{ __html: thumbnail }} />

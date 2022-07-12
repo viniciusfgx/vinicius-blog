@@ -9,7 +9,6 @@ import nextIcon from '../images/post-next-icon.svg';
 import '../styles/blog-post.scss';
 import '../styles/code.scss';
 import PostFooterCard from '../components/common/PostFooterCard';
-import Comment from '../components/comment';
 
 export interface CommentProps {
   service: 'disqus' | 'utterances';
@@ -40,9 +39,9 @@ const BlogPostTemplate = ({ data, location }) => {
     utterancesProps: commentInfo.utterancesId,
   };
 
-  const getThumbnail = (postIndex) => {
+  const getThumbnail = (postIndex: any) => {
     const regex = /<img[^>]+src\s*=\s*['"]([^'"]+)['"][^>]*>/g;
-    const htmlString = filteredPost.map((htmlCode, htmlIndex) => {
+    const htmlString = filteredPost.map((htmlCode: { html: any; }, htmlIndex: any) => {
       if (postIndex === htmlIndex) {
         return htmlCode.html;
       }
@@ -88,7 +87,7 @@ const BlogPostTemplate = ({ data, location }) => {
           </li>
         </ul>
         <div className="post-card-container" >
-          {filteredPost.map((item, postIndex) => (
+          {filteredPost.map((item, postIndex: any) => (
             <PostFooterCard key={item.fields.slug} post={item} thumbnail={getThumbnail(postIndex)} />
           ))}
         </div>

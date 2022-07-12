@@ -2,8 +2,6 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import instagram from '../../images/about/instagram.svg';
 import git from '../../images/about/git.svg';
-import twitter from '../../images/about/twitter.svg';
-import facebook from '../../images/about/facebook.svg';
 import linkedin from '../../images/about/linkedin.svg';
 import circle from '../../images/about/circle.svg';
 

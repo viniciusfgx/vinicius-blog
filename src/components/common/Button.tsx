@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonColorType } from '../../constants/buttonType';
+import { ButtonColorType } from '@/constants/buttonType';
 import '../../styles/components/common/button.scss';
 
 interface ButtonProps {

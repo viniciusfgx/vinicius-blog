@@ -6,14 +6,11 @@ export const getDefaultColorMode = (): Color => {
   if (typeof window !== 'undefined') {
     const defaultColorMode = window.localStorage.getItem(COLOR.LOCAL_STORAGE_KEY);
 
-    if (typeof defaultColorMode === 'string') {
-      return defaultColorMode as Color;
-    }
+    return defaultColorMode as Color;
 
     const defaultMediaQuery = window.matchMedia(COLOR.MEDIA_KEY);
 
-    if (typeof defaultMediaQuery.matches === 'boolean')
-      return defaultMediaQuery.matches ? COLOR.DARK_MODE : COLOR.LIGHT_MODE;
+    return defaultMediaQuery.matches ? COLOR.DARK_MODE : COLOR.LIGHT_MODE;
   }
 
   return COLOR.LIGHT_MODE;
