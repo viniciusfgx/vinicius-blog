@@ -37,7 +37,7 @@ const BlogIndex = ({ data, location }) => {
   if (posts.length === 0) {
     return (
       <Layout location={location}>
-        <SEO title="All posts" />
+        <SEO title="Blog" />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the directory you specified for the
           gatsby-source-filesystem plugin in gatsby-config.js).
@@ -48,7 +48,7 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location}>
-      <SEO title="All posts" />
+      <SEO title="Blog" />
       <div className="main">
         <aside className="aside main-aside">
           <Category categories={categories} category={category} setCategory={setCategory} />
