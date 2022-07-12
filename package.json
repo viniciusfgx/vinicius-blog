@@ -58,28 +58,9 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.0.8",
-    "husky": "=4",
-    "lint-staged": "^10.5.4",
     "prettier": "2.2.1"
   },
   "license": "MIT",
-  "main": "n/a",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run lint"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{ts,js,json,scss,md}": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.{ts,tsx,js,jsx}": [
-      "eslint",
-      "git add"
-    ]
-  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
